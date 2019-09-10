@@ -13,7 +13,8 @@ export default {
     GetCourse
   },
   data: () => ({
-    step: 1
+    step: 1,
+    selectedCourse: null
   })
 };
 </script>

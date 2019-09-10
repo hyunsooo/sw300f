@@ -1,11 +1,23 @@
 <template>
   <div>
-    <v-btn @click="getCourseList()" color="primary">Click!</v-btn>
-    <v-expansion-panel>
-        <v-expansion-panel-content v-for="(item, idx) in courses" :key="idx">
-            <h3>{{ item.title }}</h3>
-        </v-expansion-panel-content>
-    </v-expansion-panel>
+    <!-- <v-btn @click="getCourseList()" color="primary">Click!</v-btn> -->
+    <v-expansion-panels>
+        <v-expansion-panel v-for="(item, idx) in courses" :key="idx">
+            <v-expansion-panel-header>
+                <h3>{{ item.title }}</h3>
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+                기간 : {{ item.duration }} 시간 <br/>
+                최소 인원 : {{ item.minEnrollment }} <br/>
+                최대 인원 : {{ item.maxEnrollment }} <br/>
+                수업료 : {{ item.unitPrice }} <br/>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn text color="primary">Select</v-btn>
+                </v-card-actions>
+            </v-expansion-panel-content>
+        </v-expansion-panel>
+    </v-expansion-panels>
   </div>
 </template>
 
@@ -31,8 +43,11 @@ export default {
                 console.log(res.data._embedded.course);
                 this.courses = res.data._embedded.course;
             })
-            .catch(e => console.log(e));
+            .catch(e => { console.log(e)});
         }
+    },
+    created() {
+        this.getCourseList();
     }
 }
 </script>
