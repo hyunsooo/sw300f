@@ -1,13 +1,19 @@
 <template>
-  <HelloWorld />
+  <div class="schedule-course">
+    <h1>Make a course schedule</h1>
+    <get-course v-if="step == 1"></get-course>
+  </div>
 </template>
 
 <script>
-import HelloWorld from '../components/HelloWorld';
+import GetCourse from './GetCourse';
 
 export default {
   components: {
-    HelloWorld,
+    GetCourse
   },
+  data: () => ({
+    step: 1
+  })
 };
 </script>
